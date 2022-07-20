@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: sheshuvalandas/frontend-kube
+          name: frontend
+          stdin: true
+          tty: true
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BACKEND_API
+              value: "54.165.237.107 "
+#              value: backend-service
